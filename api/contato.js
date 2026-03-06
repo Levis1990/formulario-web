@@ -3,8 +3,8 @@ const { Pool } = require("pg");
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
   ssl: {
-    rejectUnauthorized: false,
-  },
+    rejectUnauthorized: false
+  }
 });
 
 module.exports = async (req, res) => {
@@ -21,12 +21,12 @@ module.exports = async (req, res) => {
   try {
     const result = await pool.query(
       "INSERT INTO contatos (nome, email, mensagem) VALUES ($1, $2, $3) RETURNING id",
-      [nome, email, mensagem],
+      [nome, email, mensagem]
     );
 
     return res.status(201).json({
       mensagem: "Dados salvos com sucesso!",
-      id: result.rows[0].id,
+      id: result.rows[0].id
     });
   } catch (error) {
     console.error("Erro ao salvar no banco:", error);

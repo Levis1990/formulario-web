@@ -30,8 +30,8 @@ const { Pool } = require("pg");
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
   ssl: {
-    rejectUnauthorized: false,
-  },
+    rejectUnauthorized: false
+  }
 });
 
 module.exports = async (req, res) => {
@@ -40,7 +40,9 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const result = await pool.query("SELECT * FROM contatos ORDER BY id DESC");
+    const result = await pool.query(
+      "SELECT * FROM contatos ORDER BY id DESC"
+    );
 
     return res.status(200).json(result.rows);
   } catch (error) {
