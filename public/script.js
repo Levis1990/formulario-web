@@ -9,12 +9,12 @@ form.addEventListener("submit", async (event) => {
   const mensagem = document.getElementById("mensagem").value;
 
   try {
-    const requisicao = await fetch("/contato", {
+    const requisicao = await fetch("/api/contato", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ nome, email, mensagem }),
+      body: JSON.stringify({ nome, email, mensagem })
     });
 
     const resultado = await requisicao.json();
